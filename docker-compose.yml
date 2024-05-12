@@ -11,16 +11,20 @@ services:
       - ./:/usr/src/myapp
     stdin_open: true
     tty: true
+    networks:
+        default:
 
   rabbitmq:
     image: rabbitmq:3.7-management
-    container_name: rabbitmq-container-test
+    container_name: app-container-test-rabbitmq
     tty: true
     ports:
       - "5672:5672"
       - "15672:15672"
+    networks:
+        default:
 
 networks:
   default:
     external:
-      name: external-example
+      name: resilient-message-handling-shared-network
